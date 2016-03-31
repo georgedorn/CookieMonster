@@ -2903,7 +2903,7 @@ CM.Util.StopAutoClick = function() {
 }
 
 CM.Util.PopWrinklers = function() {
-	var menu = document.getElementByID('menu');
+	var menu = document.getElementById('menu');
 	if (!menu) {
 		console.log("Can't find Pop All button; are you on the Statistics page?");
 		CM.Util.StopAutoPopWrinklers();
