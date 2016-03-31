@@ -2902,6 +2902,37 @@ CM.Util.StopAutoClick = function() {
 	}
 }
 
+CM.Util.PopWrinklers = function() {
+	var target = $('#menu a.option');
+	if (target.innerHTML != "Pop All"){
+		console.log("Can't find Pop All button; are you on the Statistics page?");
+		return;
+	}
+	target.click();
+}
+
+CM.Util.autopopID = 0;
+CM.Util.AutoPopWrinklers = function(timeout) {
+	if (CM.Util.autopopID != 0){
+		CM.Util.StopAutoPopWrinklers();
+	}
+	if (time == undefined) {
+		timeout = 60;
+	}
+	var ntimeout = parseInt(timeout);
+	if (isNaN(ntimeout)){
+		console.log("What is this timeout?", timeout);
+	}
+	CM.Util.autopopID = setInterval(function(){CM.Util.PopWrinklers();}, ntimeout);
+}
+
+CM.Util.StopAutoPopWrinklers = function() {
+	if (CM.Util.autopopID != 0){
+		clearInterval(CM.Util.autopopID);
+		CM.Util.autopopID = 0;
+	}
+}
+
 /**********
  * Footer *
  **********/
