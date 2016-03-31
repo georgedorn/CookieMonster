@@ -2916,7 +2916,7 @@ CM.Util.AutoPopWrinklers = function(timeout) {
 	if (CM.Util.autopopID != 0){
 		CM.Util.StopAutoPopWrinklers();
 	}
-	if (time == undefined) {
+	if (timeout == undefined) {
 		timeout = 60;
 	}
 	var ntimeout = parseInt(timeout);
