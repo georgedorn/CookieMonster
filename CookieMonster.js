@@ -2911,8 +2911,7 @@ CM.Util.PopWrinklers = function() {
 	}
 	var target = menu.getElementsByClassName('option')[0];
 	if (target.innerHTML != "Pop All"){
-		console.log("Can't find Pop All button; are you on the Statistics page?");
-		CM.Util.StopAutoPopWrinklers();
+		console.log("No wrinklers to pop?")
 		return;
 	}
 	target.click();
