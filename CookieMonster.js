@@ -2910,7 +2910,7 @@ CM.Util.PopWrinklers = function() {
 		return;
 	}
 	var target = menu.getElementsByClassName('option')[0];
-	if (target.innerHTML != "Pop All"){
+	if (!target || target.innerHTML != "Pop All"){
 		console.log("No wrinklers to pop?")
 		return;
 	}
@@ -2918,18 +2918,15 @@ CM.Util.PopWrinklers = function() {
 }
 
 CM.Util.autopopID = 0;
-CM.Util.AutoPopWrinklers = function(timeout) {
-	if (CM.Util.autopopID != 0){
-		CM.Util.StopAutoPopWrinklers();
+CM.Util.AutoPopWrinklers = function(minutes) {
+	nminutes = parseInt(minutes);
+	if (isNaN(nminutes) || nminutes < 1){
+		console.log("Don't understand this many minutes between runs:", minutes);
+		return;		
 	}
-	if (timeout == undefined) {
-		timeout = 60;
-	}
-	var ntimeout = parseInt(timeout);
-	if (isNaN(ntimeout)){
-		console.log("What is this timeout?", timeout);
-	}
-	CM.Util.autopopID = setInterval(function(){CM.Util.PopWrinklers();}, ntimeout);
+	
+	timeout = nminutes * 1000 * 60; // convert minutes to miliseconds
+	CM.Util.autopopID = setInterval(function(){CM.Util.PopWrinklers();}, timeout);
 }
 
 CM.Util.StopAutoPopWrinklers = function() {
